@@ -1,0 +1,6 @@
+[submodule "tortuga-view"]
+	path = tortuga-view
+	url = git@github.com:CSW-TorTUga/tortuga-view.git
+[submodule "tortuga-api"]
+	path = tortuga-api
+	url = git@github.com:CSW-TorTUga/tortuga-api.git
