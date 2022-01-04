@@ -1,0 +1,28 @@
+version: '2.4'
+services:
+  tortuga-api:
+    build: tortuga-api
+    image: tortuga-api
+    ports:
+      - '2223:8080'
+    depends_on:
+      - postgres
+    env_file:
+      - api.env
+  tortuga-view:
+    build: tortuga-view
+    image: tortuga-view
+    ports:
+      - '2222:80'
+    depends_on:
+      - tortuga-api
+    env_file:
+      - view.env
+  postgres:
+    image: postgres:12
+    hostname: postgres
+    restart: always
+    env_file:
+      - db.env
+    volumes:
+      - ./postgresdata:/var/lib/postgresql/data
