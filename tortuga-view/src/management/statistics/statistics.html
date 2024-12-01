@@ -1,0 +1,29 @@
+<div layout="column">
+    <div flex="10">
+        <div layout="row" class="md-inline-form">
+            <md-input-container flex>
+                <label>
+                    Daten
+                </label>
+                <md-select ng-change="statistics.updateDateUsages()" ng-model="statistics.selectedGraph">
+                    <md-option ng-repeat="graph in statistics.graphs" ng-value="graph">{{graph.name}}</md-option>
+                </md-select>
+            </md-input-container>
+            <md-datepicker flex ng-change="statistics.updateDateUsages()"
+                           ng-if="statistics.selectedGraph.needsDate"
+                           ng-model="statistics.selectedDate"></md-datepicker>
+        </div>
+    </div>
+
+    <div flex class="statistic">
+        <canvas class="chart chart-base"
+                chart-type="statistics.selectedGraph.type"
+                chart-data="statistics.selectedGraph.data()"
+                chart-labels="statistics.selectedGraph.labels()"
+                chart-series="statistics.selectedGraph.serie()"
+                chart-legend="statistics.selectedGraph.legend"
+                chart-options="{datasetFill : false}"></canvas>
+    </div>
+    {{usage.usagePerMonth()}}
+</div>
+

@@ -1,0 +1,120 @@
+<md-dialog>
+    <md-toolbar>
+        <div class="md-toolbar-tools">{{userModal.header}}</div>
+    </md-toolbar>
+
+    <md-dialog-content class="md-dialog-content">
+        <form layout="column" name="userModal.editForm">
+            <md-input-container>
+                <label>
+                    Benutzername
+                </label>
+                <input type="text" name="loginName" ng-model="userModal.user.loginName" required>
+                <div ng-messages="userModal.editForm.loginName.$error">
+                    <div ng-message="required">
+                        Bitte gib einen Benutzername an
+                    </div>
+                </div>
+
+            </md-input-container>
+            <div layout="rows">
+                <md-input-container flex="50">
+                    <label>
+                        Vorname
+                    </label>
+                    <input type="text" name="firstName" ng-model="userModal.user.firstName" required>
+                    <div ng-messages="userModal.editForm.firstName.$error">
+                        <div ng-message="required">
+                            Bitte gib deinen Vornamen an
+                        </div>
+                    </div>
+                </md-input-container>
+                <md-input-container flex="50">
+                    <label>
+                        Nachname
+                    </label>
+                    <input type="text" name="lastName" ng-model="userModal.user.lastName" required>
+                    <div ng-messages="userModal.editForm.lastName.$error">
+                        <div ng-message="required">
+                            Bitte gib deinen Nachnamen an
+                        </div>
+                    </div>
+                </md-input-container>
+            </div>
+            <md-input-container>
+                <label>
+                    Telefonnummer
+                </label>
+                <input type="tel" name="phoneNumber" ng-model="userModal.user.phoneNumber" required>
+                <div ng-messages="userModal.editForm.phoneNumber.$error">
+                    <div ng-message="required">
+                        Bitte gib deine Telefonummer an
+                    </div>
+                </div>
+            </md-input-container>
+            <md-input-container>
+                <label>
+                    E-Mail
+                </label>
+                <input type="email" name="email" ng-model="userModal.user.email" required>
+                <div ng-messages="userModal.editForm.phoneNumber.$error">
+                    <div ng-message="required">
+                        Bitte gib deine Emailadresse an
+                    </div>
+                </div>
+            </md-input-container>
+            <md-radio-group ng-model="userModal.user.gender" layout="row">
+                <md-radio-button value="MALE">Männlich</md-radio-button>
+                <md-radio-button value="FEMALE">Weiblich</md-radio-button>
+                <md-radio-button value="NONE">k.A.</md-radio-button>
+            </md-radio-group>
+            <div layout="rows">
+                <md-input-container flex="50">
+                    <label>Studiengang</label>
+                    <md-select name="major" ng-model="userModal.user.major" ng-model-options="{trackBy: '$value.id'}" ng-required="userModal.user.role == 'STUDENT'">
+                        <md-option ng-repeat="major in userModal.majors track by major.id" ng-value="major">{{major.name}}</md-option>
+                    </md-select>
+                    <div ng-messages="userModal.editForm.major.$error">
+                        <div ng-message="required">
+                            Bitte gib einen Studiengang an
+                        </div>
+                    </div>
+                </md-input-container>
+                <md-input-container flex="50">
+                    <label>
+                        Matrikelnummer
+                    </label>
+                    <input type="text" name="studentId" ng-model="userModal.user.studentId" ng-required="userModal.user.role == 'STUDENT'">
+                    <div ng-messages="userModal.editForm.studentId.$error">
+                        <div ng-message="required">
+                            Bitte gib eine Matrikelnummer an
+                        </div>
+                    </div>
+                </md-input-container>
+            </div>
+            <md-input-container>
+                <label>Rolle</label>
+                <md-select name="role" ng-model="userModal.user.role" required>
+                    <md-option value="STUDENT">Student</md-option>
+                    <md-option value="LECTURER">Dozent</md-option>
+                    <md-option value="CSW_TEAM">CSW-Team</md-option>
+                    <md-option value="ADMIN">Admin</md-option>
+                </md-select>
+                <div ng-messages="userModal.editForm.role.$error">
+                    <div ng-message="required">
+                        Bitte gib eine Rolle an
+                    </div>
+                </div>
+            </md-input-container>
+            <md-input-container>
+                <md-checkbox name="enabled" ng-model="userModal.user.enabled">Aktiviert</md-checkbox>
+            </md-input-container>
+        </form>
+    </md-dialog-content>
+
+    <md-dialog-actions>
+        <md-button type="button" ng-click="userModal.cancel()">abbrechen</md-button>
+        <md-button ng-disabled="!userModal.editForm.$valid" class="md-accent" type="submit" ng-click="userModal.submit()">absenden</md-button>
+    </md-dialog-actions>
+
+</md-dialog>

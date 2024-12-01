@@ -1,0 +1,52 @@
+<div class="md-whiteframe-z2">
+
+    <md-toolbar class="md-hue-1" ng-class="{'md-hue-2': deviceReservation.isBorrowed()}">
+        <div class="md-toolbar-tools">
+            <h2><span ng-if="deviceReservation.showUser">{{deviceReservation.reservation.user.firstName + " " + deviceReservation.reservation.user.lastName}}: </span>{{deviceReservation.reservation.device.name + " - " + deviceReservation.reservation.device.category.name }}</h2>
+
+            <div flex></div>
+            <md-button ng-if="deviceReservation.isActive()" class="md-icon-button"
+                       ng-click="deviceReservation.editReservation($event, true)">
+                <md-tooltip>
+                    Verlängern
+                </md-tooltip>
+                <md-icon>update</md-icon>
+            </md-button>
+            <md-button ng-if="!deviceReservation.isActive()" class="md-icon-button"
+                       ng-click="deviceReservation.editReservation($event, false)">
+                <md-tooltip>
+                    Bearbeiten
+                </md-tooltip>
+                <md-icon>edit</md-icon>
+            </md-button>
+            <md-button ng-if="!deviceReservation.isBorrowed()" class="md-icon-button"
+                       ng-click="deviceReservation.deleteReservation()">
+                <md-tooltip>
+                    Löschen
+                </md-tooltip>
+                <md-icon>delete</md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    <div class="card-content" layout="row">
+        <div class="big-content time-panel" layout="column" layout-align="center center" flex="50"
+             style="height: 50px;">
+            von {{deviceReservation.reservation.timeSpan.beginning | date : 'MMM d, HH:mm'}}
+        </div>
+        <div class="big-content time-panel" layout="column" layout-align="center center" flex="50"
+             style="height: 50px;">
+            bis {{deviceReservation.reservation.timeSpan.end | date : 'MMM d, HH:mm'}}
+        </div>
+    </div>
+
+    <md-button ng-if="deviceReservation.canBeBorrowed() && deviceReservation.isLocal()" class="md-raised md-accent md-hue-1 full-width-button"
+               style="margin-bottom: 0;" ng-click="deviceReservation.borrow($event)">
+        Ausleihen
+    </md-button>
+    <md-button ng-if="deviceReservation.isBorrowed() && deviceReservation.isLocal()" class="md-raised md-accent md-hue-1 full-width-button"
+               style="margin-bottom: 0;" ng-click="deviceReservation.returnDevice($event)">
+        Zurückgeben
+    </md-button>
+
+</div>

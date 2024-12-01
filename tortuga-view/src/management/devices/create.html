@@ -1,0 +1,75 @@
+<md-dialog>
+    <md-toolbar>
+        <div class="md-toolbar-tools">{{deviceModal.header}}</div>
+    </md-toolbar>
+
+    <md-dialog-content class="md-dialog-content">
+        <form layout="column" name="deviceModal.editForm">
+            <md-input-container>
+                <label>
+                    Inventarnummer
+                </label>
+                <input type="text" ng-model="deviceModal.device.inventoryNumber" name="inventoryNumber" required>
+                <div ng-messages="deviceModal.editForm.inventoryNumber.$error">
+                    <div ng-message="required">
+                        Bitte gib eine Inventarnummer an
+                    </div>
+                </div>
+            </md-input-container>
+            <md-input-container>
+                <label>
+                    Name
+                </label>
+                <input type="text" ng-model="deviceModal.device.name" name="name" required>
+                <div ng-messages="deviceModal.editForm.name.$error">
+                    <div ng-message="required">
+                        Bitte gib einen Namen an
+                    </div>
+                </div>
+            </md-input-container>
+
+            <md-input-container>
+                <label>
+                    Beschreibung
+                </label>
+                <textarea type="text" ng-model="deviceModal.device.description"></textarea>
+            </md-input-container>
+            <md-input-container>
+                <label>
+                    Kategorie
+                </label>
+                <md-select ng-model="deviceModal.device.category" ng-model-options="{trackBy: '$value.id'}" name="category" required>
+                    <md-option ng-repeat="category in deviceModal.categories" ng-value="category">{{category.name}}
+                    </md-option>
+                </md-select>
+                <div ng-messages="deviceModal.editForm.category.$error">
+                    <div ng-message="required">
+                        Bitte wähle eine Gerätekategorie aus
+                    </div>
+                </div>
+            </md-input-container>
+            <md-input-container>
+                <label>
+                    Schrank
+                </label>
+                <md-select ng-model="deviceModal.device.cabinet" name="cabinet" required>
+                    <md-option>Schrank 6</md-option>
+                    <md-option>Schrank 7</md-option>
+                </md-select>
+                <div ng-messages="deviceModal.editForm.cabinet.$error">
+                    <div ng-message="required">
+                        Bitte wähle einen Schrank aus
+                    </div>
+                </div>
+            </md-input-container>
+
+            <md-datepicker class="wide-datepicker" name="date" ng-model="deviceModal.dateAcquired" md-placeholder="Beschaffungsdatum" required></md-datepicker>
+        </form>
+    </md-dialog-content>
+
+    <md-dialog-actions>
+        <md-button type="button" ng-click="deviceModal.cancel()">abbrechen</md-button>
+        <md-button class="md-accent" ng-disabled="!deviceModal.editForm.$valid" type="submit" ng-click="deviceModal.submit()">Absenden</md-button>
+    </md-dialog-actions>
+
+</md-dialog>

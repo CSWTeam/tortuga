@@ -1,0 +1,25 @@
+<md-dialog>
+    <md-toolbar>
+        <div class="md-toolbar-tools">Antworten</div>
+    </md-toolbar>
+    <md-dialog-content class="md-dialog-content">
+
+        <form layout="column" name="answerModal.editForm">
+            <md-input-container>
+                <label>
+                    Antwort
+                </label>
+                <textarea type="text" name="answerText" ng-model="answerModal.answer" required></textarea>
+            </md-input-container>
+        </form>
+    </md-dialog-content>
+
+    <md-dialog-actions>
+        <md-button type="button" ng-click="answerModal.cancel()">abbrechen</md-button>
+        <md-button
+                class="md-accent" type="submit" ng-click="answerModal.submit()"
+                ng-disabled="!answerModal.editForm.answerText.$valid">absenden
+        </md-button>
+    </md-dialog-actions>
+
+</md-dialog>

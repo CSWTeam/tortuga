@@ -1,0 +1,29 @@
+<md-dialog>
+    <md-toolbar>
+        <div class="md-toolbar-tools">{{simpleCrudModal.header}}</div>
+    </md-toolbar>
+
+    <md-dialog-content class="md-dialog-content">
+        <form layout="column" name="simpleCrudModal.form">
+            <md-input-container ng-if="head.type != 'boolean'" ng-repeat-start="head in simpleCrudModal.getHeaders() track by $index">
+                <label>
+                    {{head.name}}
+                </label>
+                <input  name="inputField" ng-model="simpleCrudModal.prop(head.name).getSet" ng-model-options="{getterSetter: true}" required>
+            </md-input-container>
+            <md-list ng-repeat-end ng-if="head.type == 'boolean'">
+                <md-list-item>
+                    <p>{{ head.name }}</p>
+                    <md-switch class="md-accent" ng-model="simpleCrudModal.prop(head.name).getSet" ng-model-options="{getterSetter: true}""></md-switch>
+                </md-list-item>
+            </md-list>
+
+        </form>
+    </md-dialog-content>
+
+    <md-dialog-actions>
+        <md-button type="button" ng-click="simpleCrudModal.cancel()">abbrechen</md-button>
+        <md-button ng-disabled="!simpleCrudModal.form.inputField.$valid" class="md-accent" type="submit" ng-click="simpleCrudModal.submit()">absenden</md-button>
+    </md-dialog-actions>
+
+</md-dialog>

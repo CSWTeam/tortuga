@@ -1,0 +1,34 @@
+<div class="card-container card-list" layout="column" flex>
+
+    <div ng-if="supportController.messages.length == 0" class="greyed-out md-subhead" layout="column"
+         layout-align="center center" flex>
+        Es liegen aktuell keine Supporttickets vor
+    </div>
+
+    <div class="md-whiteframe-z2 ticket" ng-repeat="message in supportController.messages">
+        <md-toolbar class="md-hue-1">
+            <div class="md-toolbar-tools" layout="row">
+                <h2>
+                    {{message.name}}: {{message.subject}}
+                </h2>
+                <div flex></div>
+                <small>{{message.openedAt | date:'EEE d. MMM HH:mm'}}</small>
+            </div>
+        </md-toolbar>
+
+        <div style="white-space: pre-wrap;" class="card-content">
+            {{message.body}}
+        </div>
+
+        <div layout="row">
+            <md-button flex="50" class="md-raised md-accent md-hue-1 half-width-button md-warn"
+                       style="margin-bottom: 0;" ng-click="supportController.ignore(message)">
+                Ignorieren
+            </md-button>
+            <md-button ng-if="!!message.email" flex="50" class="md-raised md-accent md-hue-1 half-width-button"
+                       style="margin-bottom: 0;" ng-click="supportController.answer(message,$event)">
+                Antworten
+            </md-button>
+        </div>
+    </div>
+</div>

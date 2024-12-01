@@ -1,0 +1,39 @@
+<md-dialog>
+    <md-toolbar>
+        <div class="md-toolbar-tools">Details für {{deviceDetails.device.name}}</div>
+    </md-toolbar>
+
+    <md-dialog-content class="md-dialog-content">
+        <table style="width: 100%;">
+            <tr>
+                <td class="md-body-2">Inventarnummer</td>
+                <td>{{deviceDetails.device.inventoryNumber}}</td>
+            </tr>
+            <tr>
+                <td class="md-body-2">Name</td>
+                <td>{{deviceDetails.device.name}}</td>
+            </tr>
+            <tr>
+                <td class="md-body-2">Kategorie</td>
+                <td>{{deviceDetails.device.category.name}}</td>
+            </tr>
+            <tr>
+                <td class="md-body-2">Beschreibung</td>
+                <td>{{deviceDetails.device.description}}</td>
+            </tr>
+            <tr>
+                <td class="md-body-2">Schrank</td>
+                <td>{{deviceDetails.device.cabinet}}</td>
+            </tr>
+            <tr>
+                <td class="md-body-2">Beschaffungsdatum</td>
+                <td>{{deviceDetails.device.acquisitionDate | date}}</td>
+            </tr>
+        </table>
+    </md-dialog-content>
+
+    <md-dialog-actions>
+        <md-button type="button" ng-click="deviceDetails.close()">schließen</md-button>
+    </md-dialog-actions>
+
+</md-dialog>

@@ -1,0 +1,51 @@
+<md-dialog>
+    <md-toolbar>
+        <div class="md-toolbar-tools">Ein Problem melden</div>
+    </md-toolbar>
+
+    <md-dialog-content class="md-dialog-content">
+        <form layout="column" name="supportModal.createForm">
+            <md-input-container>
+                <label>
+                    name
+                </label>
+                <input type="text" ng-model="supportModal.ticket.name" ng-disabled="supportModal.isLoggedIn" required>
+            </md-input-container>
+            <md-input-container>
+                <label>
+                    email
+                </label>
+                <input type="text" ng-model="supportModal.ticket.email" ng-disabled="supportModal.isLoggedIn" required>
+            </md-input-container>
+            <md-input-container>
+                <label>
+                    Betreff
+                </label>
+                <input type="text" name="subject" ng-model="supportModal.ticket.subject" required>
+                <div ng-messages="supportModal.createForm.subject.$error">
+                    <div ng-message="required">
+                        Bitte gib einen Betreff an
+                    </div>
+                </div>
+            </md-input-container>
+            <md-input-container>
+                <label>
+                    Beschreibung
+                </label>
+                <textarea type="text" name="description" ng-model="supportModal.ticket.body" required></textarea>
+                <div ng-messages="supportModal.createForm.description.$error">
+                    <div ng-message="required">
+                        Bitte gib eine Beschreibung an
+                    </div>
+                </div>
+            </md-input-container>
+        </form>
+    </md-dialog-content>
+
+    <md-dialog-actions>
+        <md-button type="button" ng-click="supportModal.cancel()">abbrechen</md-button>
+        <md-button ng-disabled="!supportModal.createForm.subject.$valid || !supportModal.createForm.description.$valid"
+                   class="md-accent" type="submit" ng-click="supportModal.submit()">absenden</md-button>
+    </md-dialog-actions>
+
+</md-dialog>>

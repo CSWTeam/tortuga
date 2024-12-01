@@ -1,0 +1,494 @@
+.sidenav.md-locked-open {
+    min-width: 250px;
+    width: 250px;
+    max-width: 250px;
+
+    height: 100%;
+    color: white;
+}
+
+.sidenav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.sidenav li {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.sidenav md-button, .sidenav a, .sidenav button {
+    padding: 9px;
+    padding-left: 15px;
+    width: 100%;
+    margin: 0;
+    text-align: left;
+}
+
+.nav-link-top {
+    height: 100%;
+    margin: 0;
+    padding: 12px;
+}
+
+.sidenav header {
+    display: block;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    font-family: 'Source Sans Pro', sans-serif;;
+    text-align: center;
+    font-weight: 600;
+    font-size: 3.5em;
+}
+
+.sidenav md-content {
+    background-color: inherit;
+    color: inherit;
+}
+
+
+.main-content {
+    padding: 45px;
+    padding-bottom: 0;
+}
+
+.turn-device-notification {
+    position:fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 100;
+
+    background-color: black;
+    color: white;
+
+    font-size: 1.6em;
+
+    display: none;
+}
+
+@media screen and (max-width: 959px) {
+    .main-content {
+        padding: 10px;
+    }
+
+    md-dialog {
+        max-height: calc(100% - 30px);
+        width: calc(100% - 30px);
+        max-width: none;
+        margin: auto;
+    }
+}
+
+@media screen and (max-width: 959px) and (orientation: landscape) {
+    .turn-device-notification {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media screen and (min-width: 960px) {
+    .medium-form{
+        width: 400px;
+    }
+
+    .profile-data {
+        width: 330px;
+    }
+
+    md-dialog {
+        width: 400px;
+    }
+}
+
+
+.full-width-button {
+    width: 100%;
+    margin: 0;
+}
+
+.half-width-button {
+    width: 50%;
+    margin: 0;
+}
+
+.animate-fade.ng-enter {
+    animation: fadeIn .25s;
+}
+
+.animate-fade.ng-leave {
+    animation: fadeOut .25s;
+}
+
+.card-container > * {
+    margin: 20px;
+
+    background-color: white;
+}
+
+@media screen and (min-width: 960px) {
+    .card-container > * {
+        min-width: 400px;
+    }
+
+    .big-content {
+        font-size: 1.8em;
+    }
+}
+
+div.time-panel {
+    text-align: center;
+}
+
+div.time-panel:first-child {
+    border-right: 1px solid rgba(0, 0, 0, .2);
+}
+
+.card-content {
+    padding: 16px;
+}
+
+.card-container {
+    /*background-color: rgba(0,0,0,.12)*/
+}
+
+[ui-view] {
+    transition: opacity .4s linear;
+}
+
+[ui-view].ng-enter {
+    opacity: 0;
+}
+
+[ui-view].ng-enter-active {
+    opacity: 1;
+}
+
+[ui-view].ng-leave {
+    display: none;
+}
+
+md-menu-content {
+    padding: 0;
+}
+
+.management-list tr.ng-enter {
+    animation: fadeIn .3s;
+}
+
+.management-list tr.ng-leave {
+    animation: fadeOut .3s;
+}
+
+.management-list tr.inactive td, .management-list td.inactive {
+    color: rgba(0, 0, 0, 0.2);
+}
+
+.management-list tr.warn td, .management-list td.warn {
+    color: red;
+}
+
+table.management-list {
+    border-collapse: collapse;
+}
+
+table.management-list tr:not(:last-child) td {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+table.management-list tr td:not(:last-child) {
+    padding-right: 36px;
+}
+
+table.management-list tr td:not(:first-child) {
+    padding-left: 36px;
+}
+
+table.management-list tr td {
+    padding: 16px 0px;
+}
+
+table.management-list tr:not(:last-child) th {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+table.management-list tr th:not(:last-child) {
+    padding-right: 36px;
+}
+
+table.management-list tr th:not(:first-child) {
+    padding-left: 36px;
+}
+
+table.management-list tr th {
+    padding: 16px 0px;
+}
+
+table.management-list tr+tr.ng-enter td {
+    border-bottom-color: rgba(0, 0, 0, 0);
+}
+
+table.management-list tr + tr.ng-enter.ng-enter-active td {
+    border-bottom-color: rgba(0, 0, 0, 0.12);
+}
+
+room-reservation.ng-enter {
+    animation: slideInRight .5s;
+}
+
+room-reservation.ng-leave {
+    animation: slideOutRight .5s;
+}
+
+.main-fab.md-fab.md-button {
+    position: fixed;
+    right: 2%;
+    bottom: 30px;
+}
+
+
+
+.roomReservationModal md-datepicker .md-datepicker-input-container,
+.deviceReservationModal md-datepicker .md-datepicker-input-container {
+    width: 78%;
+}
+
+md-datepicker.wide-datepicker .md-datepicker-input-container {
+    width: 78%;
+}
+
+header a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.time-picker > md-input-container {
+    width:40px;
+}
+
+table.management-list th {
+
+    font-weight: bold;
+    text-align: left;
+}
+
+.greyed-out {
+    color: rgba(0, 0, 0, .3);
+    text-align: center;
+
+}
+
+/* Fixes the Speed Dial Problem */
+.md-scale:not(.md-is-open) .md-fab-action-item {
+    opacity: 0;
+    transform: scale(0);
+}
+
+.fullscreen {
+    width: 1024px;
+    height: 768px;
+}
+
+
+.right {
+    right: 0px;
+}
+
+.bottom{
+    bottom: 0px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.problem-button{
+    background-color: #ff999e;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    height: 50px;
+    width: 250px;
+    border: 0;
+    font-size: larger;
+}
+
+.emoji-password {
+    width: 700px;
+    height: 700px;
+}
+
+.emoji-button {
+    outline: none;
+    border: 1px solid white;
+    transition: linear border-color 0.2s;
+    border-radius: 15px;
+    background-color: white;
+    height: 100px;
+    font-size: xx-large;
+    flex-grow: 1;
+    text-align: center;
+    cursor: pointer;
+}
+
+.emoji-button:active {
+    border: 1px solid darkgrey;
+}
+
+.flex-row {
+    flex-direction: row;
+    display: flex;
+}
+
+.password-bubble {
+    font-size: xx-large;
+    height: 37px;
+    border: 0px solid #aeaeae;
+    margin: 10px;
+    padding: 20px;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.password-field {
+    margin: 20px 20px 20px 20px;
+    flex-direction: row;
+    display: flex;
+    border-bottom: 1px solid black;
+}
+
+.clickable {
+    cursor: pointer;
+    border: 1px solid white;
+    transition: linear border-color 0.4s;
+    transition: linear background-color 0.2s;
+    border-radius: 15px;
+}
+
+.clickable:active {
+    border: 1px solid darkgrey;
+    background-color: darkgrey;
+
+}
+
+
+.pin-display {
+    margin: 20px 20px 20px 0px;
+    flex-direction: row;
+    display: flex;
+}
+
+.pin-display>.password-bubble {
+    padding: 2px;
+}
+
+.password-hint {
+    text-align: center;
+    max-width: 30%;
+    border-left: 1px solid #aeaeae;
+    padding: 10px;
+    pading-left: 20px;
+    margin-left: 20px;
+    min-height: 500px;
+
+}
+
+.slide-out-left.ng-leave {
+    animation: slideOutLeft 0.5s;
+}
+
+.slide-out-right.ng-leave {
+    animation:slideOutRight 0.5s;
+}
+
+.slide-in-left.ng-enter {
+    animation: slideInLeft 0.5s;
+}
+
+.slide-in-right.ng-enter {
+    animation: slideInRight 0.5s;
+}
+
+.create-state {
+    position:absolute;
+    width:80%;
+}
+
+/* Fix for md-fab-bottom-right */
+.md-button.md-fab.md-fab-bottom-right, md-fab-speed-dial.md-fab-bottom-right {
+    top: auto;
+    right: 20px;
+    bottom: 20px;
+    left: auto;
+    position: fixed;
+}
+
+.mobile-login {
+    width: 85%;
+    min-width: 0;
+}
+
+
+.password-row {
+    margin: 20px;
+}
+
+
+.text-scrolling {
+    width: 70%;
+    margin-bottom: 5px;
+}
+.text-scrolling-privacy {
+    width: 100%;
+}
+
+.privacy-link {
+    font-size: 25px;
+}
+
+.privacy-link:hover {
+    color: #1573ef;
+}
+
+
+/*material icons */
+
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url(/node_modules/material-design-icons/iconfont/MaterialIcons-Regular.eot); /* For IE6-8 */
+    src: local('Material Icons'),
+    local('MaterialIcons-Regular'),
+    url(/node_modules/material-design-icons/iconfont/MaterialIcons-Regular.woff2) format('woff2'),
+    url(/node_modules/material-design-icons/iconfont/MaterialIcons-Regular.woff) format('woff'),
+    url(/node_modules/material-design-icons/iconfont/MaterialIcons-Regular.ttf) format('truetype');
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;  /* Preferred icon size */
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+}

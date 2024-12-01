@@ -1,0 +1,19 @@
+<div class="main-content card-container" layout="column" flex>
+    <room-reservation
+            ng-repeat="reservation in roomController.reservations | orderBy:'timeSpan.beginning'"
+            reservation="reservation"
+            on-delete="roomController.reservationDeleted(reservation)"
+            class="animate-fade"></room-reservation>
+
+    <div ng-if="roomController.reservations.length == 0" class="greyed-out md-subhead" layout="column"
+         layout-align="center center" flex>
+        Du hast aktuell keine Raumbuchungen
+    </div>
+</div>
+
+<md-button class="md-fab md-fab-bottom-right md-raised md-accent" ng-click="roomController.addReservation($event)">
+    <md-tooltip>
+        Raumbuchung beantragen
+    </md-tooltip>
+    <md-icon>add</md-icon>
+</md-button>

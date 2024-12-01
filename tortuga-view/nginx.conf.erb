@@ -1,0 +1,33 @@
+
+
+worker_processes 1;
+error_log stderr;
+pid nginx.pid;
+daemon off;
+
+events {
+  worker_connections 768;
+}
+
+http {
+  types_hash_max_size 2048;
+  include mime.types;
+  server {
+    listen <%= ENV["PORT"] %>;
+    server_name  _;
+    root /app/www;
+
+    location / {
+      root /app/www;
+
+      try_files $uri $uri/ /index.html;
+
+    }
+
+    location = / {
+      root /app/www;
+
+      try_files /index.html /index.html;
+    }
+  }
+}

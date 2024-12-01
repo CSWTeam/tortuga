@@ -1,0 +1,64 @@
+<md-dialog>
+    <md-toolbar>
+        <div class="md-toolbar-tools">Details für {{userDetails.user.loginName}}</div>
+    </md-toolbar>
+
+    <md-dialog-content class="md-dialog-content">
+        <table style="width: 100%;">
+            <tr>
+                <td class="md-body-2">Benutzername</td>
+                <td>{{userDetails.user.loginName}}</td>
+            </tr>
+            <tr>
+                <td class="md-body-2">Vorname</td>
+                <td>{{userDetails.user.firstName}}</td>
+            </tr>
+            <tr>
+                <td class="md-body-2">Nachname</td>
+                <td>{{userDetails.user.lastName}}</td>
+            </tr>
+            <tr>
+                <td class="md-body-2">E-Mail</td>
+                <td>{{userDetails.user.email}}</td>
+            </tr>
+            <tr>
+                <td class="md-body-2">Geschlecht</td>
+                <td><optional property="userDetails.user.gender"></optional></td>
+            </tr>
+            <tr>
+                <td class="md-body-2">Studiengang</td>
+                <td><optional property="userDetails.user.major.name"></optional></td>
+            </tr>
+            <tr>
+                <td class="md-body-2">Matrikelnummer</td>
+                <td><optional property="userDetails.user.studentId"></optional></td>
+            </tr>
+            <tr>
+                <td class="md-body-2">Telefonnummer</td>
+                <td>{{userDetails.user.phoneNumber}}</td>
+            </tr>
+            <tr>
+                <td class="md-body-2">Rolle</td>
+                <td>{{userDetails.user.role}}</td>
+            </tr>
+            <tr>
+                <td class="md-body-2">Läuft aus</td>
+                <td><optional property="userDetails.user.expirationDate | date"></optional></td>
+            </tr>
+            <tr>
+                <td class="md-body-2">Ist deaktiviert</td>
+                <td ng-if="userDetails.user.enabled">
+                    Nein
+                </td>
+                <td ng-if="!userDetails.user.enabled">
+                    Ja
+                </td>
+            </tr>
+        </table>
+    </md-dialog-content>
+
+    <md-dialog-actions>
+        <md-button type="button" ng-click="userDetails.close()">schließen</md-button>
+    </md-dialog-actions>
+
+</md-dialog>

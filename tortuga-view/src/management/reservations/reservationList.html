@@ -1,0 +1,34 @@
+<div class="card-container" layout="column" flex>
+
+    <h2 style="margin-top: 0;" class="md-display-1 animate-fade"  ng-if="listController.oldReservations.length != 0">Nicht zurück gegeben</h2>
+    <device-reservation
+            ng-repeat="reservation in listController.oldReservations | orderBy:'timeSpan.beginning'"
+            reservation="reservation"
+            show-user="true"
+            on-delete="listController.deviceReservationDeleted(reservation)">
+    </device-reservation>
+
+
+    <h2 style="margin-top: 0;"  class="md-display-1 animate-fade" ng-if="listController.currentReservations.length != 0">Aktuelle</h2>
+    <device-reservation
+            ng-repeat="reservation in listController.currentReservations | orderBy:'timeSpan.beginning'"
+            reservation="reservation"
+            show-user="true"
+            on-delete="listController.deviceReservationDeleted(reservation)">
+    </device-reservation>
+
+
+    <h2 style="margin-top: 0;"  class="md-display-1 animate-fade" ng-if="listController.futureReservations.length != 0" >Zukünftige</h2>
+    <device-reservation
+            ng-repeat="reservation in listController.futureReservations | orderBy:'timeSpan.beginning'"
+            reservation="reservation"
+            show-user="true"
+            on-delete="listController.deviceReservationDeleted(reservation)">
+    </device-reservation>
+
+    <div ng-if="!listController.foundReservation()" class="greyed-out md-subhead" layout="column"
+         layout-align="center center" flex>
+        Es gibt aktuell keine reservierten Geräte
+    </div>
+
+</div>

@@ -1,0 +1,222 @@
+
+.fullscreen, div.problem-overlay {
+    width: 1500px;
+    height: 800px;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Chrome/Safari/Opera */
+    -khtml-user-select: none; /* Konqueror */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE/Edge */
+    user-select: none;
+    /* non-prefixed version, currently
+                           not supported by any browser */
+
+    position: absolute;
+    top: 0;
+    left: 20em;
+}
+
+div.problem-overlay {
+    background-color: rgba(0, 0, 0, .7);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.problem-overlay button {
+    width: 60%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    flex-grow: 1;
+
+    border: 0;
+    font-size: 3rem;
+    background-color: lightcoral;
+    color: white;
+}
+
+.right {
+    right: 0px;
+}
+
+.bottom {
+    bottom: 0px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.full-height {
+    height: 768px;
+}
+
+.problem-button {
+    background-color: inherit;
+    border: 0;
+    right: 0;
+    bottom: 0;
+    height: 50px;
+    width: 300px;
+    font-size: larger;
+    color: white;
+}
+
+.emoji-password {
+    width: 700px;
+    height: 700px;
+}
+
+.main-content {
+    left: 300px;
+    width: 724px;
+}
+
+.emoji-button {
+    outline: none;
+    border: 1px solid white;
+    transition: linear border-color 0.2s;
+    border-radius: 15px;
+    background-color: white;
+    height: 100px;
+    font-size: xx-large;
+    flex-grow: 1;
+    text-align: center;
+    cursor: pointer;
+}
+
+.emoji-button:active {
+    border: 1px solid darkgrey;
+}
+
+.flex-row {
+    flex-direction: row;
+    display: flex;
+}
+
+.password-bubble {
+    font-size: xx-large;
+    height: 37px;
+    border: 0px solid #aeaeae;
+    margin: 10px;
+    padding: 20px;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.password-field {
+    margin: 20px 20px 20px 20px;
+    flex-direction: row;
+    display: flex;
+    border-bottom: 1px solid black;
+}
+
+.clickable {
+    cursor: pointer;
+    border: 1px solid white;
+    transition: linear border-color 0.4s;
+    transition: linear background-color 0.2s;
+    border-radius: 15px;
+}
+
+.clickable:active {
+    border: 1px solid darkgrey;
+    background-color: darkgrey;
+}
+
+.room-open-button {
+    width: 300px;
+    height: 300px;
+    background-color: white;
+}
+
+.lock-image {
+    width: 300px;
+    box-shadow: 20px 20px 50px -10px grey;
+    height: 300px;
+    border: 1px #aeaeae solid;
+    background-color: rgba(192,192,192,0.15);
+    border-radius: 50px;
+    padding: 22px;
+    margin-bottom: 70px;
+}
+
+.big-button {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding:0px;
+}
+
+.title {
+    font-size: 4rem;
+    margin: 0;
+}
+
+.sidebar {
+    top: 0;
+    left: 0;
+    height: 890px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+.primary-background {
+    background-color: rgb(120, 144, 156);
+}
+
+body {
+    font-family: Roboto,"Helvetica Neue",sans-serif;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex {
+    flex-grow: 1;
+}
+
+
+
+.sidebar header {
+    display: block;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    font-family: 'Source Sans Pro', sans-serif;;
+    text-align: center;
+    font-weight: 600;
+    font-size: 3.5em;
+
+    /* border-bottom: 1px solid white; */
+}
+
+qrcode {
+    padding: 10px;
+}
+
+.flex-container {
+    display: flex;
+}
+
+.flex-big {
+    flex-grow: 10;
+}
+
+.center-center {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.password-row {
+    margin-left: 20px;
+    margin-right: 20px;
+}

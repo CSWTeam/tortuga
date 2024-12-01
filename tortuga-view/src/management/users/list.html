@@ -1,0 +1,86 @@
+<div>
+    <div layout-gt-sm="row" layout-xs="column" layout-sm="column" style="margin-top: 0;">
+        <span class="md-display-1 primary-color">Benutzerliste</span>
+        <div hide-xs flex></div>
+        <div layout="row" layout-margin>
+            <div layout="row" layout-align="center center">
+                <md-checkbox ng-model="userList.showActive">Aktiv</md-checkbox>
+            </div>
+            <md-input-container>
+                <label>
+                    Suche
+                </label>
+                <input type="text" ng-model="userList.userFilter">
+            </md-input-container>
+        </div>
+    </div>
+    <table class="management-list" style="width: 100%;">
+        <tr>
+            <th>Benutzername</th>
+            <th ng-if-start="!nav.isMobile()">Name</th>
+            <th>Rolle</th>
+            <th ng-if-end>Gültig bis</th>
+            <th>Aktionen</th>
+        </tr>
+        <tr ng-class="{'inactive': !user.enabled}" ng-repeat="user in userList.users | filter:userList.activeFilter | filter:{$:userList.userFilter} | orderBy:'loginName'">
+            <td>{{user.loginName}}</td>
+            <td ng-if-start="!nav.isMobile()">{{user.firstName + " " + user.lastName}}</td>
+            <td>{{user.role}}</td>
+            <td ng-if-end ng-class="{'warn': userList.isUserExpired(user)}">{{user.expirationDate | date}}</td>
+            <td>
+                <md-menu md-position-mode="target-right target">
+                    <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                        <md-icon>more_horiz</md-icon>
+                    </md-button>
+                    <md-menu-content>
+                        <md-menu-item>
+                            <md-button ng-click="userList.showDetails(user, $event)">
+                                <md-icon>info</md-icon>
+                                Details
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-item ng-if-start="userList.canTouchUser(user)">
+                            <md-button ng-click="userList.editUser(user, $event)">
+                                <md-icon>edit</md-icon>
+                                Bearbeiten
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button ng-click="userList.resetPassword(user, $event)">
+                                <md-icon>vpn_key</md-icon>
+                                Passwort zurücksetzen
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-item ng-if="user.expirationDate &&
+                        (userList.userExpiresThisSemester(user) || userList.isUserExpired(user))">
+                            <md-button ng-click="userList.extendValidTime(user, $event)">
+                                <md-icon>update</md-icon>
+                                Account verlängern
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-item ng-if="!user.enabled">
+                            <md-button ng-click="userList.setActive(user)">
+                                <md-icon>play_arrow</md-icon>
+                                Account aktivieren
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-item ng-if="user.enabled">
+                            <md-button class="md-warn" ng-click="userList.setInactive(user, $event)">
+                                <md-icon>block</md-icon>
+                                Account deaktivieren
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-divider></md-menu-divider>
+                        <md-menu-item ng-if-end>
+                            <md-button ng-click="userList.deleteUser(user, $event)" class="md-raised md-warn">
+                                <md-icon>delete</md-icon>
+                                Löschen
+                            </md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+            </td>
+        </tr>
+    </table>
+</div>
+<md-button class="md-fab md-raised md-fab-bottom-right md-accent" ui-sref="management.users.create"><md-icon>add</md-icon></md-button>

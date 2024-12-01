@@ -1,0 +1,11 @@
+<md-toolbar class="md-primary md-hue-1 md-whiteframe-z1">
+    <div class="md-toolbar-tools" ng-controller="TicketNavController as tickets" >
+        <md-button ui-sref="tickets.roomReservation" class="nav-link-top" ng-class="{ 'md-accent': nav.isInState('tickets.roomReservation') }">
+            Raumbuchungen <span ng-if="tickets.getReservationCount() > 0">({{tickets.getReservationCount()}})</span>
+        </md-button>
+        <md-button ui-sref="tickets.support" class="nav-link-top" ng-class="{ 'md-accent': nav.isInState('tickets.support') }">
+            Support <span ng-if="tickets.getTicketCount() > 0">({{tickets.getTicketCount()}})</span>
+        </md-button>
+    </div>
+</md-toolbar>
+<md-content flex class="main-content" ui-view layout="column"></md-content>

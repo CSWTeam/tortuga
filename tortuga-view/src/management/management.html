@@ -1,0 +1,12 @@
+<md-toolbar class="md-primary md-hue-1 md-whiteframe-z1">
+  <div class="md-toolbar-tools" ng-controller="NavController as nav">
+    <md-button ui-sref="management.users.list" class="nav-link-top" ng-class="{ 'md-accent': nav.isInState('management.users') }">Benutzer</md-button>
+    <md-button ui-sref="management.devicereservations" class="nav-link-top" ng-class="{ 'md-accent': nav.isInState('management.devicereservations') }">Reservierungen</md-button>
+
+    <md-button ui-sref="management.devices" class="nav-link-top" ng-class="{ 'md-accent': nav.isInState('management.devices') }">Geräte</md-button>
+    <md-button ui-sref="management.admin" class="nav-link-top" ng-class="{ 'md-accent': nav.isInState('management.admin') }">Admin</md-button>
+    <md-button ui-sref="management.statistics" class="nav-link-top" ng-class="{ 'md-accent': nav.isInState('management.statistics') }">Statistiken</md-button>
+
+  </div>
+</md-toolbar>
+<md-content flex class="main-content" ui-view layout="column"></md-content>

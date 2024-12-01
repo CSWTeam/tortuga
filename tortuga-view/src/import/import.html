@@ -1,0 +1,24 @@
+<form class="main-content medium-form" name="importForm" action="/api/v1/import/csvFile" method="post" enctype="multipart/form-data">
+    <h2 class="md-display-2" style="margin-top: 0">
+        Importer
+    </h2>
+    <label for="file">
+        Zu importierende Daten als ZIP-Archiv
+    </label><br>
+    <input type="file" name="file" id="file" required>
+    <div style="margin-top: 15px;">
+        <md-checkbox ng-model="sendMails">
+            Emails senden
+        </md-checkbox>
+    </div>
+    <div ng-if="sendMails">
+        Im Email Text wird $FIRSTNAME, $LASTNAME und $PASSWORD durch den jeweiligen Wert ersetzt
+        <md-input-container >
+            <textarea ng-model="emailText" name="emailText" placeholder="Email Text..." cols="55" required></textarea>
+        </md-input-container>
+    </div>
+
+    <md-button class="md-raised md-accent full-width-button" type="submit" ng-disabled="!importForm.$valid">
+        Importieren
+    </md-button>
+</form>

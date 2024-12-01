@@ -1,0 +1,44 @@
+<div>
+    <h1 class="md-display-1 primary-color" layout="row" style="margin-top: 0;">{{simpleCrud.name}}
+        <div flex></div>
+        <div layout="column" layout-align="center center">
+            <md-button hide-gt-sm class="md-icon-button" ng-click="simpleCrud.createItem($event)">
+                <md-icon>
+                    add
+                </md-icon>
+            </md-button>
+            <md-button hide show-gt-sm class="md-raised" ng-click="simpleCrud.createItem($event)">{{simpleCrud.name}} anlegen</md-button>
+        </div>
+    </h1>
+    <table class="management-list" style="width: 100%;">
+        <tr class="md-body-2">
+            <td ng-repeat="head in simpleCrud.getHeaders() track by $index">{{head.name}}</td>
+            <td>Aktionen</td>
+        </tr>
+        <tr ng-repeat="item in simpleCrud.items">
+            <td ng-repeat="head in simpleCrud.getHeaders() track by $index">{{simpleCrud.getProperty(item,head.name)}}</td>
+            <td>
+                <md-menu md-position-mode="target-right target">
+                    <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                        <md-icon>more_horiz</md-icon>
+                    </md-button>
+                    <md-menu-content>
+                        <md-menu-item>
+                            <md-button ng-click="simpleCrud.editItem($event, item)">
+                                <md-icon>edit</md-icon>
+                                Bearbeiten
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-divider></md-menu-divider>
+                        <md-menu-item>
+                            <md-button ng-click="simpleCrud.deleteItem($event, item)" class="md-warn md-raised">
+                                <md-icon>delete</md-icon>
+                                Löschen
+                            </md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+            </td>
+        </tr>
+    </table>
+</div>

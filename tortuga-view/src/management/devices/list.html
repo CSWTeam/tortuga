@@ -1,0 +1,53 @@
+<div>
+    <h2 class="md-display-1 primary-color" style="margin-top: 0;">
+        Geräteverwaltung
+    </h2>
+
+    <div ng-repeat="category in deviceList.getCategoryWithDevices()">
+        <h2 class="md-display-1 primary-color">{{category.name}}</h2>
+        <table class="management-list" style="width: 100%;">
+            <tr>
+                <th>Name</th>
+                <th ng-if-start="!nav.isMobile()">Schrank</th>
+                <th>Inventarnummer</th>
+                <th ng-if-end>Beschaffungsdatum</th>
+                <th>Aktionen</th>
+            </tr>
+            <tr ng-repeat="device in deviceList.devices | filter:{$: category.id}">
+                <td>{{device.name}}</td>
+                <td ng-if-start="!nav.isMobile()">{{device.cabinet}}</td>
+                <td>{{device.inventoryNumber}}</td>
+                <td ng-if-end>{{device.acquisitionDate | date}}</td>
+                <td>
+                    <md-menu md-position-mode="target-right target">
+                        <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                            <md-icon>more_horiz</md-icon>
+                        </md-button>
+                        <md-menu-content>
+                            <md-menu-item>
+                                <md-button ng-click="deviceList.showDetails(device, $event)">
+                                    <md-icon>info</md-icon>
+                                    Details
+                                </md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button ng-click="deviceList.editDevice($event, device)">
+                                    <md-icon>edit</md-icon>
+                                    Bearbeiten
+                                </md-button>
+                            </md-menu-item>
+                            <md-menu-divider></md-menu-divider>
+                            <md-menu-item>
+                                <md-button ng-click="deviceList.removeDevice($event, device)" class="md-warn md-raised">
+                                    <md-icon>delete</md-icon>
+                                    Löschen
+                                </md-button>
+                            </md-menu-item>
+                        </md-menu-content>
+                    </md-menu>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<md-button class="md-fab md-raised md-fab-bottom-right md-accent" ng-click="deviceList.createDevice($event)"><md-icon>add</md-icon></md-button>

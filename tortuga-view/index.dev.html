@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>CSW</title>
+
+    <base href="/">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+    <link href="dist/style.css" type="text/css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:900' rel='stylesheet' type='text/css'>
+</head>
+
+<body ng-app="rms" class="md-body-1" layout-gt-xs="row" layout-xs="column" ng-controller="NavController as nav" ng-mousedown="nav.somethingHappened()" ng-keydown="nav.somethingHappened()">
+
+<style>
+    .primary-background {
+        background-color: {{primaryColor}};
+    }
+
+    .primary-color {
+        color: {{primaryColor}};
+    }
+
+    .accent-background {
+        background-color: {{accentColor}};
+    }
+
+    .accent-color {
+        color: {{accentColor}};
+    }
+</style>
+
+<div ng-if="nav.isMobile()" class="turn-device-notification">
+    Bitte drehe dein Gerät in die Porträtansicht
+</div>
+
+<md-toolbar class="md-primary" ng-if="nav.isMobile()" ng-hide="!nav.isLoggedIn()">
+    <div class="md-toolbar-tools">
+        <md-button class="md-icon-button" ng-click="nav.openSidenav()">
+            <md-icon>
+                menu
+            </md-icon>
+        </md-button>
+        <h2 ng-cloak>
+            {{nav.getCurrentStateName()}}
+        </h2>
+    </div>
+</md-toolbar>
+
+<md-sidenav
+        layout="column"
+        class="sidenav md-sidenav-left md-whiteframe-z3"
+        ng-class="{ 'primary-background': !nav.isMobile() }"
+        md-is-locked-open="$mdMedia('gt-sm') && nav.isLoggedIn() && !nav.isInState('newPin') && !nav.isInState('login')"
+        md-component-id="left">
+    <header>
+        <a ui-sref="home">
+            C S W
+        </a>
+    </header>
+    <md-content flex>
+        <ul>
+            <li>
+                <navigation-link state="home"></navigation-link>
+            </li>
+            <li>
+                <md-button ng-class="{'md-accent': nav.isInState('deviceReservation')}" ui-sref="deviceReservationList">
+                    Reservierungen
+                </md-button>
+            </li>
+            <li ng-if="nav.isLecturer()">
+                <navigation-link state="room"></navigation-link>
+            </li>
+            <li ng-if="nav.isCswTeam()">
+                <navigation-link state="management"></navigation-link>
+            </li>
+            <li ng-controller="TicketNavController as tickets" ng-if="nav.isCswTeam()">
+                <navigation-link state="tickets">
+                    <span ng-if="tickets.getAllCount() > 0">({{tickets.getAllCount()}})</span>
+                </navigation-link>
+            </li>
+            <li>
+                <navigation-link state="calendar"></navigation-link>
+            </li>
+            <li>
+                <navigation-link state="profile"></navigation-link>
+            </li>
+        </ul>
+    </md-content>
+    <md-button ng-click="nav.supportTicket()">Problem melden</md-button>
+    <md-button ng-click="nav.logout()">
+        Logout
+    </md-button>
+</md-sidenav>
+
+<md-content ui-view role="main" flex layout="column"></md-content>
+
+
+<!-- inject:js -->
+<!-- endinject -->
+
+</body>
+
+</html>

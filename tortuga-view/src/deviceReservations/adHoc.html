@@ -1,0 +1,59 @@
+<div class="main-content">
+
+    <h2 class="md-display-2" style="margin-top: 0;">
+        Gerät jetzt ausleihen
+    </h2>
+
+    <form layout="column" name="createController.createForm" class="medium-form">
+        <md-input-container>
+            <label>
+                Gerätekategorien
+            </label>
+            <md-select ng-model="createController.selectedDeviceCategory" ng-model-options="{trackBy : '$value.id'}"
+                        name="deviceCategorySelector"
+                       ng-change="createController.loadPossibleDevices()"
+                       required>
+                <md-option ng-repeat="deviceCategory in createController.deviceCategories"
+                           ng-value="deviceCategory">
+                    {{deviceCategory.name}}
+                </md-option>
+            </md-select>
+
+        </md-input-container>
+        <md-input-container>
+            <label>
+                Länge
+            </label>
+            <md-select ng-model="createController.hoursToReservate"
+                       ng-disabled="createController.selectedDeviceCategory == undefined"
+                       ng-change="createController.loadPossibleDevices()">
+                <md-option ng-repeat="hour in [1,2,3,4,5,6,7,8,9,10,11,12]"
+                           ng-if="createController.canBeBorrowedForHours(hour)" ng-value="hour">{{hour}} Stunde(n)
+                </md-option>
+            </md-select>
+
+        </md-input-container>
+
+
+        <md-input-container>
+            <label>
+                Geräte
+            </label>
+            <md-select ng-model="createController.selectedDevice" ng-model-options="{trackBy : '$value.id'}"
+                       ng-disabled="createController.hoursToReservate == undefined || createController.selectedDeviceCategory == undefined || createController.devices.length == 0"
+                       name="deviceSelector" required>
+                <md-option ng-repeat="device in createController.devices" ng-value="device">{{device.name}}
+                </md-option>
+
+            </md-select>
+
+        </md-input-container>
+
+        <md-button class="md-accent md-raised" ng-disabled="createController.selectedDevice == undefined"
+                   ng-click="createController.submit()">
+            Reservieren
+        </md-button>
+    </form>
+
+
+</div>

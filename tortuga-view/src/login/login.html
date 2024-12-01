@@ -1,0 +1,30 @@
+<div flex class="card-container" layout="column" layout-align="center center"
+     ng-controller="LoginController as loginCtrl">
+
+    <div class="md-whiteframe-z2" ng-class="{'mobile-login': loginCtrl.isMobile()}">
+        <md-toolbar class="md-primary">
+            <div class="md-toolbar-tools">
+                CSW Anmeldung
+            </div>
+        </md-toolbar>
+        <form name="loginCtrl.loginForm" class="card-content" ng-submit="loginCtrl.login()">
+            <md-input-container  class="md-block">
+                <label>Benutzername</label>
+                <input name="username" ng-model="loginCtrl.username" type="text" spellcheck="false" autocapitalize="off" autocorrect="off" required autofocus>
+            </md-input-container>
+            <md-input-container style="margin-bottom: 0;" class="md-block">
+                <label>Passwort</label>
+                <input name="password" ng-model="loginCtrl.password" type="password" required>
+            </md-input-container>
+            <div style="padding-left: 2px;" ng-if="!loginCtrl.isTerminal()">
+                <md-checkbox ng-model="loginCtrl.longToken">
+                    Angemeldet bleiben
+                </md-checkbox>
+            </div>
+            <md-button ng-disabled="loginCtrl.loginForm.$invalid" type="submit"
+                       class="full-width-button md-accent md-raised">{{loginCtrl.loginButtonText}}
+            </md-button>
+        </form>
+    </div>
+
+</div>

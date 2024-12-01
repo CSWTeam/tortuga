@@ -1,0 +1,38 @@
+<div class="md-whiteframe-z2 reservation">
+    <md-toolbar class="md-hue-1" ng-class="{'md-hue-2': roomReservation.reservation.open}">
+        <div class="md-toolbar-tools">
+            <h2>
+                {{roomReservation.reservation.title}} <small ng-if="!roomReservation.reservation.approved || roomReservation.reservation.open">&lt;{{roomReservation.getState()}}&gt;</small>
+            </h2>
+
+            <div flex></div>
+            <md-button ng-if="!roomReservation.isActive()" class="md-icon-button"
+                       ng-click="roomReservation.deleteReservation()">
+                <md-tooltip>
+                    Löschen
+                </md-tooltip>
+                <md-icon>delete</md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <div class="card-content" layout="row">
+        <div class="big-content time-panel" layout="column" layout-align="center center" flex="50"
+             style="height: 50px;">
+            von {{roomReservation.reservation.timeSpan.beginning | date:'EEE d. MMM HH:mm'}}
+        </div>
+        <div class="big-content time-panel" layout="column" layout-align="center center" flex="50"
+             style="height: 50px;">
+            bis {{roomReservation.reservation.timeSpan.end | date:'EEE d. MMM H:mm'}}
+        </div>
+    </div>
+    <md-button ng-if="roomReservation.canBeOpenedNow() && !roomReservation.reservation.open && roomReservation.isLocal()"
+               class="md-raised md-accent md-hue-1 full-width-button"
+               style="margin-bottom: 0;" ng-click="roomReservation.openRoom()">
+        Raum öffnen
+    </md-button>
+    <md-button ng-if="roomReservation.reservation.open && roomReservation.isLocal()"
+               class="md-raised md-accent md-hue-1 full-width-button"
+               style="margin-bottom: 0;" ng-click="roomReservation.closeRoom()">
+        Raum schließen
+    </md-button>
+</div>

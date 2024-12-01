@@ -1,0 +1,74 @@
+<div class="main-content" layout="column" flex>
+
+    <div ng-if="homeController.getRoomReservations().length == 0 && homeController.getDeviceReservations().length == 0"
+         class="greyed-out md-subhead" layout="column" layout-align="center center" flex >
+        {{ nav.isStudent() ? "Du hast für den aktuellen Zeitraum keine Geräte reserviert" :
+        "Du hast für den akutellen Zeitraum weder Geräte reserviert noch den Raum gebucht" }}
+    </div>
+
+    <div ng-if="homeController.getRoomReservations().length != 0 ">
+        <h2>Raumbuchung</h2>
+        <div class="card-container">
+            <room-reservation
+                    ng-repeat="roomReservation in homeController.getRoomReservations()"
+                    reservation="roomReservation"
+                    on-delete="homeController.onDeleteRoomReservation(roomReservation)"></room-reservation>
+        </div>
+    </div>
+
+    <div ng-if="homeController.getDeviceReservations().length != 0 ">
+        <h2>Geräte</h2>
+        <div class="card-container">
+
+            <device-reservation
+                    ng-repeat="deviceReservation in homeController.getDeviceReservations()"
+                    reservation="deviceReservation"
+                    on-delete="homeController.onDeleteDeviceReservation(deviceReservation)"></device-reservation>
+
+        </div>
+    </div>
+
+</div>
+
+<md-fab-speed-dial ng-if="!nav.isStudent() || nav.isLocal()" md-direction="up" class="md-scale md-fab-bottom-right">
+    <md-fab-trigger>
+        <md-button aria-label="Hauptaktionen" class="md-fab md-accent">
+            <md-icon>add</md-icon>
+        </md-button>
+    </md-fab-trigger>
+    <md-fab-actions>
+        <md-button ng-if="nav.isLocal()" ui-sref="deviceReservationAdHoc" aria-label="Gerät jetzt ausleihen" class="md-fab md-raised md-mini">
+            <md-icon>queue_play_next</md-icon>
+            <md-tooltip md-direction="left">
+                Gerät jetzt ausleihen
+            </md-tooltip>
+        </md-button>
+        <md-button ui-sref="deviceReservationCreate" aria-label="Gerät reservieren" class="md-fab md-raised md-mini">
+            <md-icon>devices</md-icon>
+            <md-tooltip md-direction="left">
+                Gerät reservieren
+            </md-tooltip>
+        </md-button>
+        <md-button ng-if="nav.isLecturer()" ng-click="homeController.bookRoom()" aria-label="Raumbuchung beantragen" class="md-fab md-raised md-mini">
+            <md-icon>event</md-icon>
+            <md-tooltip md-direction="left">
+                Raumbuchung beantragen
+            </md-tooltip>
+        </md-button>
+        <md-button ui-sref="management.users.create" ng-if="nav.isCswTeam()" aria-label="Benutzer erstellen" class="md-fab md-raised md-mini">
+            <md-icon>person_add</md-icon>
+            <md-tooltip md-direction="left">
+                Benutzer erstellen
+            </md-tooltip>
+        </md-button>
+    </md-fab-actions>
+</md-fab-speed-dial>
+
+<md-button ng-if="nav.isStudent() && !nav.isLocal()" ui-sref="deviceReservationCreate" class="md-fab md-fab-bottom-right md-accent md-raised">
+    <md-icon>
+        devices
+    </md-icon>
+    <md-tooltip md-direction="left">
+        Gerät reservieren
+    </md-tooltip>
+</md-button>

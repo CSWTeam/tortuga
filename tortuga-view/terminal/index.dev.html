@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>RMS terminal</title>
+
+    <base href="/terminal">
+
+    <meta charset="utf-8">
+
+    <link href="terminal/style.css" type="text/css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+</head>
+
+<body ng-app="rms-terminal" ng-controller="LoginController as loginController">
+
+<div style="visibility: hidden; position:absolute">
+    <span><twemoji emoji="'🐵'"></twemoji></span>
+    <span><twemoji emoji="'🙈'"></twemoji></span>
+    <span><twemoji emoji="'➡️'"> ️</twemoji></span>
+    <span><twemoji emoji="'🔓'"></twemoji></span>
+    <span><twemoji emoji="'❌'"></twemoji></span>
+</div>
+
+<div class="fullscreen main-container">
+    <div class="sidebar primary-background">
+        <header>C S W</header>
+        <div class="flex-container center-center flex-big">
+            <p  ng-if-start="loginController.roomReservation == undefined">Scannen zum Tür öffnen</p>
+            <qrcode ng-if-end code="loginController.loginUrl"></qrcode>
+        </div>
+        <button class="problem-button" ng-click="loginController.chooseProblem()">PROBLEM MELDEN</button>
+    </div>
+
+    <div ng-if="loginController.roomReservation != undefined" class="main-content">
+        <button class="big-button clickable full-height full-width" ng-click="loginController.openDoor()">
+            <h1 class="title">{{loginController.roomReservation.title}}</h1>
+            <img class="lock-image" src="terminal/lock.svg" draggable="false">
+        </button>
+    </div>
+
+    <div ng-if="loginController.roomReservation == undefined" class="main-content">
+        <div class="emoji-password">
+            <div class="password-field">
+                <div ng-switch="pin" class="password-bubble"
+                     ng-repeat="pin in loginController.getPasswordShow() track by $index">
+                    <span ng-switch-when="0"><twemoji emoji="'🐵'"></twemoji></span>
+                    <span ng-switch-when="1"><twemoji emoji="'🙈'"></twemoji></span>
+                    <span ng-switch-when="2"><twemoji emoji="'➡️'"> ️</twemoji></span>
+                    <span ng-switch-when="3"><twemoji emoji="'🔓'"></twemoji></span>
+                    <span ng-switch-when="4"><twemoji emoji="'❌'"></twemoji></span>
+                </div>
+                <div class="password-bubble clickable" ng-switch="loginController.getBackButtonStatus()"
+                     ng-click="loginController.deletePin()">
+                    <twemoji ng-switch-when="0" emoji="'🔙'"></twemoji>
+                    <twemoji ng-switch-when="1" emoji="'🔓'"></twemoji>
+                    <twemoji ng-switch-when="2" emoji="'❌'"></twemoji>
+                </div>
+            </div>
+            <div class="flex-row password-row" ng-repeat="row in loginController.getEmojis() track by $index">
+                <button class="emoji-button clickable" ng-click="loginController.addKey(emoji)"
+                        ng-repeat="emoji in row track by $index" twemoji>
+                    <twemoji emoji="emoji"></twemoji>
+                </button>
+            </div>
+        </div>
+        <div class="qr-code"></div>
+    </div>
+</div>
+
+<div class="problem-overlay" ng-hide="!loginController.isChoosingProblem()">
+    <button ng-repeat="actProblem in loginController.getPossibleProblems()"
+            ng-click="loginController.submitProblem(actProblem.text)">
+        {{actProblem.text}}
+    </button>
+</div>
+
+<script src="node_modules/angular/angular.js"></script>
+<script src='node_modules/angular-resource/angular-resource.js'></script>
+<script src="terminal/twemoji.min.js"></script>
+<script src="terminal/qrcode.js"></script>
+<script src="terminal/app.js"></script>
+
+<script>
+    angular.module('rms-terminal')
+            .constant('baseHost', '$$HOST');
+</script>
+
+</body>
+
+</html>

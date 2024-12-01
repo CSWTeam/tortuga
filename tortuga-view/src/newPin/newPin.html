@@ -1,0 +1,77 @@
+<div class="main-content">
+    <div style="visibility: hidden">
+        <span><twemoji emoji="'🐵'"></twemoji></span>
+        <span><twemoji emoji="'🙈'"></twemoji></span>
+        <span><twemoji emoji="'➡️'" >️</twemoji></span>
+        <span><twemoji emoji="'🔓'"></twemoji></span>
+        <span><twemoji emoji="'❌'"></twemoji></span>
+    </div>
+
+    <div ng-if="pinController.getState() < pinController.getSuccessNecessary()" layout="row"
+         layout-align="center center">
+        <div class="emoji-password">
+            <div class="password-field">
+                <div ng-switch="pin" class="password-bubble"
+                     ng-repeat="pin in pinController.getPasswordShow() track by $index">
+                    <span ng-switch-when="0"><twemoji emoji="'🐵'"></twemoji></span>
+                    <span ng-switch-when="1"><twemoji emoji="'🙈'"></twemoji></span>
+                    <span ng-switch-when="2"><twemoji emoji="'➡️'"> ️</twemoji></span>
+                    <span ng-switch-when="3"><twemoji emoji="'🔓'"></twemoji></span>
+                    <span ng-switch-when="4"><twemoji emoji="'❌'"></twemoji></span>
+                </div>
+                <div class="password-bubble clickable" ng-switch="pinController.getBackButtonStatus()"
+                     ng-click="pinController.deletePin()">
+                    <twemoji ng-switch-when="0" emoji="'🔙'"></twemoji>
+                    <twemoji ng-switch-when="1" emoji="'🔓'"></twemoji>
+                    <twemoji ng-switch-when="2" emoji="'❌'"></twemoji>
+                </div>
+            </div>
+            <div class="flex-row password-row" ng-repeat="row in pinController.getEmojis() track by $index">
+                <button class="emoji-button clickable" ng-click="pinController.addKey(emoji)"
+                        ng-repeat="emoji in row track by $index" twemoji>
+                    <twemoji emoji="emoji"></twemoji>
+                </button>
+            </div>
+        </div>
+
+        <div ng-if="pinController.getState() == 0" class="password-hint" layout="column">
+            <div flex></div>
+            <div>
+                <h3>Dies ist dein neuer Passcode</h3>
+                <div class="pin-display">
+                    <div class="password-bubble"
+                         ng-repeat="emoji in pinController.getPin() track by $index">
+                        <twemoji emoji="emoji"></twemoji>
+                    </div>
+                </div>
+                <h3>Um den Pin zu verifizieren gebe ihn bitte {{pinController.getSuccessNecessary() -
+                    pinController.getState()}} mal ein</h3>
+            </div>
+            <div flex></div>
+        </div>
+
+
+        <div ng-if="pinController.getState() > 0" class="password-hint" layout="column">
+            <div flex></div>
+            <div>
+                <h3>Um den Pin zu verifizieren gebe ihn bitte noch {{pinController.getSuccessNecessary() -
+                    pinController.getState()}} mal ein</h3>
+                <div ng-if="pinController.getState() == 1">
+                    <md-button class="full-width" ng-click="pinController.showPinHint(true)">Pin nochmal anzeigen
+                    </md-button>
+                    <div class="pin-display" ng-if="pinController.doShowPinHint()">
+                        <div class="password-bubble"
+                             ng-repeat="emoji in pinController.getPin() track by $index">
+                            <twemoji emoji="emoji"></twemoji>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div flex></div>
+        </div>
+    </div>
+    <div ng-if="pinController.getState() >= pinController.getSuccessNecessary()">
+        <h2>Dein Pin wurde erfolgreich gesetzt.</h2>
+    </div>
+</div>
+

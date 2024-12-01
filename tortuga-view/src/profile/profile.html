@@ -1,0 +1,57 @@
+<div class="main-content" ng-controller="ProfileController as profile">
+    <h2 style="color: {{primaryColor}}; margin-top: 0;" class="md-display-2">Profil</h2>
+
+    <div class="profile-data">
+        <table style="width: 100%;">
+            <tr>
+                <td class="md-body-2">Name</td>
+                <td>{{profile.getUser().lastName}}</td>
+            </tr>
+            <tr>
+                <td class="md-body-2">Vorname</td>
+                <td>{{profile.getUser().firstName}}</td>
+            </tr>
+            <tr>
+                <td class="md-body-2">Benutzername</td>
+                <td>{{profile.getUser().loginName}}</td>
+            </tr>
+            <tr>
+                <td class="md-body-2">Email</td>
+                <td>{{profile.getUser().email}}</td>
+            </tr>
+            <tr>
+                <td class="md-body-2">Telefonnummer</td>
+                <td>
+                    <optional property="profile.getUser().phoneNumber"></optional>
+                </td>
+            </tr>
+            <tr>
+                <td class="md-body-2">Studiengang</td>
+                <td>
+                    <optional property="profile.getUser().major.name"></optional>
+                </td>
+            </tr>
+            <tr>
+                <td class="md-body-2">Matrikelnummer</td>
+                <td>
+                    <optional property="profile.getUser().studentId"></optional>
+                </td>
+            </tr>
+            <tr>
+                <td class="md-body-2">Geschlecht</td>
+                <td>
+                    <optional property="profile.getGender()"></optional>
+                </td>
+            </tr>
+            <tr>
+                <td class="md-body-2">Rolle</td>
+                <td>
+                    <optional property="profile.getRole()"></optional>
+                </td>
+            </tr>
+        </table>
+        <md-button class="md-raised full-width-button" ng-click="profile.changePassword($event)">Passwort ändern</md-button>
+        <md-button hide show-gt-sm style="margin-top: 10px;" class="md-raised full-width-button" ng-click="profile.newPin()">Pin neu vergeben</md-button>
+
+    </div>
+</div>
