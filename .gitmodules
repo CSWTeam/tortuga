@@ -1,6 +1,0 @@
-[submodule "tortuga-view"]
-	path = tortuga-view
-	url = https://github.com/CSW-TorTUga/tortuga-view.git
-[submodule "tortuga-api"]
-	path = tortuga-api
-	url = https://github.com/CSW-TorTUga/tortuga-api.git

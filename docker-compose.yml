@@ -1,10 +1,11 @@
-version: '2.4'
+version: '3'
 services:
   tortuga-api:
     build: tortuga-api
     image: tortuga-api
-    ports:
-      - '2223:8080'
+    restart: unless-stopped
+#    ports:
+#      - '2223:8080'
     depends_on:
       - postgres
     env_file:
@@ -12,8 +13,9 @@ services:
   tortuga-view:
     build: tortuga-view
     image: tortuga-view
-    ports:
-      - '2222:80'
+    restart: unless-stopped
+#    ports:
+#      - '2222:80'
     depends_on:
       - tortuga-api
     env_file:
@@ -26,3 +28,28 @@ services:
       - db.env
     volumes:
       - ./postgresdata:/var/lib/postgresql/data
+  nginx:
+    image: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/app.conf:/etc/nginx/conf.d/app.conf:ro
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./certbot/conf:/etc/letsencrypt:ro
+      - ./certbot/www:/var/www/certbot:ro
+      - ./nginx/dhparam.pem:/etc/nginx/dhparam.pem:ro
+    depends_on:
+      - tortuga-view
+      - tortuga-api
+  certbot:
+    image: certbot/certbot
+    depends_on:
+      - nginx
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt:rw
+      - ./certbot/www:/var/www/certbot:rw
+    command: >- 
+             certonly --reinstall --webroot --webroot-path=/var/www/certbot
+             --email thomas.luedecke@tu-darmstadt.de --agree-tos --no-eff-email
+             -d www.computerstudienwerkstatt.de --rsa-key-size 4096
