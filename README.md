@@ -8,6 +8,12 @@
 
 - Import dump:
 
-  `echo "DROP DATABASE rms4csw; CREATE DATABASE rms4csw;" | docker exec -i tortuga_postgres_1 psql -U postgres` 
+  ```bash
+  docker exec -i csw-postgres-1 bash -c 'psql -U postgres -d postgres -c "DROP DATABASE IF EXISTS rms4csw;" && psql -U postgres -d postgres -c "CREATE DATABASE rms4csw;" && psql -U postgres -d rms4csw' < /home/csw/db.dump
+  ```
 
-  `cat dbdump/20211225_rms4csw_dump.sql | docker exec -i tortuga_postgres_1 psql -U postgres -d rms4csw`
+- Export dump:
+
+  ```bash
+  docker exec -i csw-postgres-1 bash -c 'pg_dump -U postgres rms4csw' > /home/db.dump
+  ```
